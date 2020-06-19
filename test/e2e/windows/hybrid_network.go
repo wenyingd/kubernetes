@@ -58,7 +58,7 @@ var _ = SIGDescribe("Hybrid cluster network", func() {
 			windowsPod = f.PodClient().CreateSync(windowsPod)
 
 			ginkgo.By("checking connectivity to 8.8.8.8 53 (google.com) from Linux")
-			assertConsistentConnectivity(f, linuxPod.ObjectMeta.Name, linuxOS, linuxCheck("8.8.8.8", 53))
+			assertConsistentConnectivity(f, linuxPod.ObjectMeta.Name, linuxOS, linuxCheck("8.8.8.8", 853))
 
 			ginkgo.By("checking connectivity to www.google.com from Windows")
 			assertConsistentConnectivity(f, windowsPod.ObjectMeta.Name, windowsOS, windowsCheck("www.google.com"))
