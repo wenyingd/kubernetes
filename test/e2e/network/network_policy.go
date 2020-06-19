@@ -2009,7 +2009,7 @@ func createNetworkClientPodWithRestartPolicy(f *framework.Framework, namespace *
 					Args: []string{
 						"/bin/sh",
 						"-c",
-						fmt.Sprintf("for i in $(seq 1 5); do nc -vz -w 8 %s.%s %d && exit 0 || sleep 1; done; exit 1",
+						fmt.Sprintf("for i in $(seq 1 5); do nc -vz -w 8 %s.%s.svc.cluster.local %d && exit 0 || sleep 1; done; exit 1",
 							targetService.Name, targetService.Namespace, targetPort),
 					},
 				},

@@ -902,10 +902,10 @@ func (j *TestJig) checkNodePortServiceReachability(svc *v1.Service, pod *v1.Pod)
 // FQDN of kubernetes is used as externalName(for air tight platforms).
 func (j *TestJig) checkExternalServiceReachability(svc *v1.Service, pod *v1.Pod) error {
 	// Service must resolve to IP
-	cmd := fmt.Sprintf("nslookup %s", svc.Name)
+	cmd := fmt.Sprintf("nslookup %s.%s", svc.Name, svc.Namespace)
 	_, err := framework.RunHostCmd(pod.Namespace, pod.Name, cmd)
 	if err != nil {
-		return fmt.Errorf("ExternalName service %q must resolve to IP", pod.Namespace+"/"+pod.Name)
+		return fmt.Errorf("ExternalName service %q must resolve to IPi: %v", pod.Namespace+"/"+pod.Name, err)
 	}
 	return nil
 }
